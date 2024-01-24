@@ -1,5 +1,6 @@
 import os
 import datetime
+import time
 
 log_path = "log.txt"
 request_path = "request.txt"
@@ -9,6 +10,7 @@ response_path = "response.txt"
 
 while (not os.path.isfile(request_path)) :
     pass
+time.sleep(1)
 
 # Receive request
 
