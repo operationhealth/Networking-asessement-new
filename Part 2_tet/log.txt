@@ -1,0 +1,17 @@
+----------------------------
+
+HEAD /wizzard.jpg HTTP/1.1
+Host: google.com
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 16:35:51 GMT
+Server: google.com
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 326266
+Connection: open
+Content-Type: jpg
+
+----------------------------

@@ -1,0 +1,73 @@
+----------------------------
+
+GET /ring.txt HTTP/1.1
+Host: google.com
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:28:00 GMT
+Server: google.com
+Last-Modified: Wed Jan 24 17:07:14 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+Hi I am "ring.txt"
+
+----------------------------
+
+GET /ring.txt HTTP/1.1
+Host: google.com
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:29:51 GMT
+Server: google.com
+Last-Modified: Wed Jan 24 17:07:14 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+Hi I am "ring.txt"
+
+----------------------------
+
+GET /ring.txt HTTP/1.1
+Host: google.com
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:30:05 GMT
+Server: google.com
+Last-Modified: Wed Jan 24 17:07:14 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+Hi I am "ring.txt"
+
+----------------------------
+
+GET /ring.txt HTTP/1.1
+Host: google.com
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:30:45 GMT
+Server: google.com
+Last-Modified: Wed Jan 24 17:07:14 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+Hi I am "ring.txt"
+
+----------------------------

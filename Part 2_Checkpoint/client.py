@@ -8,7 +8,7 @@ log_path = "log.txt"
 request_path = "pipe/request.txt"
 response_path = "pipe/response.txt"
 connection = "pipe"
-clientResource = "clientResources"
+clientResource = "clientResources/"
 
 # Set-up
 
@@ -54,7 +54,7 @@ if handshake :
 
     while (not os.path.isfile(response_path)) :
         pass
-
+    time.sleep(4)
     # Receive response
 
     print("\nResponse received!\n")

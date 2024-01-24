@@ -57,7 +57,5 @@ def receiveACK(seq):
     os.remove(ack)
     return True
 
-def waitingMessage(path):
-    while (not os.path.isfile(path)) :
-        pass
-    return True
+
+

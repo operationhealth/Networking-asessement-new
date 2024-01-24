@@ -1,0 +1,228 @@
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+HEAD /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:00:32 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | None | txt | 1 | 1
+HEAD /ring.txt HTTP/1.1
+Host: google
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:24:27 GMT
+Server: google
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:44:10 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:45:35 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:50:08 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:52:32 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 17:58:11 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:18:32 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | jpg | 1 | 1
+GET /wizzard.jpg HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:18:52 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 326266
+Connection: open
+Content-Type: jpg
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | jpg | 1 | 1
+GET /wizzard.jpg HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:20:23 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 326266
+Connection: open
+Content-Type: jpg
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:23:37 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:24:37 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
+
+192.168.1.0 | 192.168.1.1 | txt | 1 | 1
+GET /ring.txt HTTP/1.1
+Host: www.gollum.mordor
+
+----------------------------
+
+HTTP/1.1 200 OK
+Date: Wed, 24 Jan 2024 18:25:09 GMT
+Server: www.gollum.mordor
+Last-Modified: Wed Jan 24 15:11:54 2024
+Accept-Ranges: bytes
+Content-Length: 18
+Connection: open
+Content-Type: txt
+
+----------------------------
