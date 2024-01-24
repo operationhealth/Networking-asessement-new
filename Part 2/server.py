@@ -1,5 +1,7 @@
 import os
 import shutil
+import datetime
+import time
 from imports import serverHandshake
 
 log_path = "log.txt"
@@ -7,7 +9,9 @@ request_path = "pipe/request.txt"
 response_path = "pipe/response.txt"
 connection = "pipe"
 serverResource = "serverResources"
-file = ""
+item = ""
+filetype = ""
+server = ""
 
 handshake = False
 
@@ -36,11 +40,30 @@ if handshake:
     if data:
         start = data.index("/")
         end = data.index(" HTTP/1.1")
-        file = data[start+1:end]
+        item = data[start+1:end]
+        start = item.index(".") + 1
+        filetype = item[start:]
+        start = data.index("Host") + 6
+        server = data[start:]
 
     # Logging response
+        
+    date = datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")
+    filesize = os.path.getsize(serverResource + "/" + item)
 
-    response = "HTTP/1.1 200 OK"
+    x = os.path.getmtime(serverResource + "/" + item)
+    lastModified = time.ctime(x)
+
+    response = """HTTP/1.1 200 OK
+Date: {}
+Server: {}
+Last-Modified: {}
+Accept-Ranges: bytes
+Content-Length: {}
+Connection: open
+Content-Type: {}""".format(date, server, lastModified, filesize, filetype)
+    
+
     log = "\n\n" + response + "\n\n----------------------------"
 
     with open(log_path, "a") as pipe:
@@ -49,7 +72,7 @@ if handshake:
 
     # Sending response
     
-    source = serverResource + "/" + file
+    source = serverResource + "/" + item
 
     with open(response_path, "w") as pipe:
         shutil.copy(source,connection)
