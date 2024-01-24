@@ -54,6 +54,7 @@ if handshake :
 
     while (not os.path.isfile(response_path)) :
         pass
+    time.sleep(2)
 
     # Receive response
 
