@@ -69,11 +69,11 @@ Content-Type: {}""".format(date, server, lastModified, filesize, filetype)
     
     if (httpMethod=="GET"):
         if (filetype=="txt" or filetype=="html"):
-            mode = "r"
+            with open(source,"r") as f:
+                content = f.read()
         else:
-            mode = "rb"
-        with open(source,mode) as f:
-            content = f.read()
+            with open(source,"rb") as f:
+                content = str(f.read())
         response = response + "\n\n" + content
 
     log = "\n\n" + response + "\n\n----------------------------"
