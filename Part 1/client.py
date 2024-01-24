@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 log_path = "log.txt"
 request_path = "request.txt"
@@ -40,6 +41,7 @@ with open(request_path, "w") as pipe:
 
 while (not os.path.isfile(response_path)) :
     pass
+time.sleep(1)
 
 # Receive response
 
