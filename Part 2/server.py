@@ -27,6 +27,7 @@ if handshake:
 
     while (not os.path.isfile(request_path)) :
         pass
+    time.sleep(1)
 
     # Receive request
 
