@@ -2,7 +2,8 @@ import os
 import shutil
 import datetime
 import time
-from imports import serverHandshake, packetsplit
+from imports import serverHandshake, packetsplit, ipheader
+import base64
 
 log_path = "log.txt"
 request_path = "pipe/request.txt"
@@ -37,48 +38,47 @@ if handshake:
     with open(request_path, "r+") as request:
         data = request.read()
         print(data)
-        ipheader = (data.split('\n', 1)[0]).split(' | ', -1)
+        client_ipheader = (data.split('\n', 1)[0]).split(' | ', -1)
+
     os.remove(request_path)
+
+    if data:
+        start = data.index("/")
+        end = data.index(" HTTP/1.1")
+        item = data[start+1:end]
+        start = item.index(".") + 1
+        filetype = item[start:]
+        start = data.index("Host") + 6
+        server = data[start:]
+        start = data.index("\n")
+        end = data.index("/")
+        httpMethod = data[start:end-1]
     
-    if ipheader:
-        print("parsing ip header...")
-        source_ip = ipheader[0]
-        dest_ip = ipheader[1]
-        filetype = ipheader[2]
-        packet_number = ipheader[3]
-        number_of_packets = ipheader[4]
+    ip_condition = False
+
+    if client_ipheader:
+        source_ip = client_ipheader[0]
+        dest_ip = client_ipheader[1]
+        filetype = client_ipheader[2]
+        packet_number = client_ipheader[3]
+        number_of_packets = client_ipheader[4]
+
         if dest_ip == server_ip:
+            if item in os.listdir(serverResource):
+                ip_condition = True
+    
 
-            if filetype in ("serverResources/ring.txt") or ("serverResources/wizzard.jpg"):
-                print("Successfully parsed ip header")
-
-                if data:
-        
-                    print ("parsing data")
-                    start = data.index("/")
-                    httpMethod = data[:start-1]
-                    end = data.index(" HTTP/1.1")
-                    item = data[start+1:end]
-                    start = item.index(".") + 1
-                    filetype = item[start:]
-                    start = data.index("Host") + 6
-                    server = data[start:]
-            else:
-                print("resourcetype not found")
-        else:
-            print("ip doesn't match server")
+    if ip_condition:
+    
+        # Logging response
             
+        date = datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")
+        filesize = os.path.getsize(serverResource + "/" + item)
 
+        x = os.path.getmtime(serverResource + "/" + item)
+        lastModified = time.ctime(x)
 
-    # Logging response
-        
-    date = datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S GMT")
-    filesize = os.path.getsize(serverResource + "/" + item)
-
-    x = os.path.getmtime(serverResource + "/" + item)
-    lastModified = time.ctime(x)
-
-    response = """HTTP/1.1 200 OK
+        response = """HTTP/1.1 200 OK
 Date: {}
 Server: {}
 Last-Modified: {}
@@ -86,39 +86,27 @@ Accept-Ranges: bytes
 Content-Length: {}
 Connection: open
 Content-Type: {}""".format(date, server, lastModified, filesize, filetype)
-    
-    source = serverResource + "/" + item
-    
-    if (httpMethod=="GET"):
-        print("get detected")
-        if (filetype=="txt" or filetype=="html"):
-            ("txt split")
-            with open(source,"r") as f:
-                content = f.read()
-        else:
-            print("splitting image")
-            packets = packetsplit(source, 1024)
-            number_of_packets_to_send = packets[0]
-            content = []
-            for i in range(len(packets)):
-                packetdata = packets[i]
-                packet_with_header = ipheader(server_ip, source_ip, "jpg", str(i), number_of_packets[0]) + packetdata
-                content.append(packet_with_header)
+        
+        source = serverResource + "/" + item
+        content=""
 
+        if httpMethod.strip()=="GET":
+            temp = packetsplit(source)
+            for i in range(len(temp)):
+                packetdata = temp[i]
+                packet_with_header = ipheader(server_ip, source_ip, item, str(i+1), len(temp)) + "\n\n"
+                content += packet_with_header + response + "\n\n" + packetdata 
+            response = content
 
-        response = response + "\n\n" + content
+        log = "\n\n" + response + "\n\n----------------------------"
 
+        with open(log_path, "a") as pipe:
+            pipe.write(log)
+            print("\nResponse logged!")
 
-    log = "\n\n" + response + "\n\n----------------------------"
-
-    with open(log_path, "a") as pipe:
-        pipe.write(log)
-        print("\nResponse logged!")
-
-    # Sending response
-    if httpMethod == "GET":
+        # Sending response
         with open(response_path, "w") as pipe:
-            shutil.copy(source,connection)
+            if httpMethod.strip()=="GET":
+                shutil.copy(source,connection)
             pipe.write(response)
-    print("Response sent!")
-
+        print("Response sent!")

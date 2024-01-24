@@ -2,7 +2,7 @@ import os
 import sys
 import time
 import shutil
-from imports import clientHandshake, DNS_lookup, ipheader
+from imports import clientHandshake, DNS_lookup, ipheader, data_decode
 
 log_path = "log.txt"
 request_path = "pipe/request.txt"
@@ -68,8 +68,15 @@ if handshake :
 
     with open(response_path, "r+") as response:
         data = response.read()
-    print(data)
+        httphead = data.split('\n')[0]
+        print (httphead)
+        totalpackets = httphead.split(' | ')[4]
+        unpackageddata = b''
+        for i in range(int(totalpackets)):
+            unpackageddata += data_decode(data)
+    #print(data)
     os.remove(response_path)
 
     source = connection + "/" +resources[0]
     shutil.move(source,clientResource)
+
