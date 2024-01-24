@@ -83,8 +83,8 @@ Content-Type: {}""".format(date, server, lastModified, filesize, filetype)
         print("\nResponse logged!")
 
     # Sending response
-
-    with open(response_path, "w") as pipe:
-        shutil.copy(source,connection)
-        pipe.write(response)
-        print("Response sent!")
+    if httpMethod == "GET":
+        with open(response_path, "w") as pipe:
+            shutil.copy(source,connection)
+            pipe.write(response)
+    print("Response sent!")
