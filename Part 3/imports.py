@@ -1,5 +1,7 @@
 import os
 import time
+import math
+import base64
 
 seq_m = "m"
 seq_n = "n"
@@ -61,3 +63,29 @@ def waitingMessage(path):
     while (not os.path.isfile(path)) :
         pass
     return True
+
+#DNS lookup
+
+def DNS_lookup(domain):
+    source_ip = ip_table.get(domain)
+    return source_ip
+
+ip_table = {"www.gollum.mordor": "192.168.1.1",
+        "rincewind.fourex.disc.atuin": "192.168.1.1"}
+
+# Generates ip header
+
+def ipheader(source_ip, dest_ip, item, packet_number, numberofpackets):
+    return "{} | {} | {} | {} | {}".format(source_ip, dest_ip, item.split('.')[1], packet_number, numberofpackets)
+
+# Splits images into packets, returns list of packets
+
+def packetsplit(filepath):
+    data = []
+    with open(filepath,"rb") as f:
+        while True:
+            temp = base64.b64encode(f.read(1024)).decode('utf-8')
+            if temp == '':
+                break
+            data.append(temp)
+    return data
